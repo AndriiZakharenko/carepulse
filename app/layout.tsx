@@ -22,6 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" style={{colorScheme: 'dark'}}>
+       <head>
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body
         className={cn(
           "min-h-screen bg-dark-300 font-sans antialiased",
