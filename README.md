@@ -14,7 +14,7 @@
 - ReactDom
 - Next
 - Typescript
-- Shadcn
+- Shadcn/ui
 
 ### Tools
 
