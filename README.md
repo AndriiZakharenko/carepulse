@@ -12,8 +12,10 @@
 - Adaptive
 - React
 - ReactDom
+- React Hook Form
 - Next
 - Typescript
+- DB (appwrite)
 - Shadcn/ui
 
 ### Tools

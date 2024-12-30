@@ -4,21 +4,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Form } from "@/components/ui/form";
-import CustomFormField from "../CustomFormField";
+import CustomFormField, { FormFieldType } from "../CustomFormField";
 import SubmitButton from "../SubmitButton";
 import { useState } from "react";
 import { UserFormValidation } from "@/lib/validation";
 import { useRouter } from "next/navigation";
-
-export enum FormFieldType {
-  INPUT = "input",
-  TEXTAREA = "textarea",
-  PHONE_INPUT = "phoneInput",
-  CHECKBOX = "checkbox",
-  DATE_PICKER = "datePicker",
-  SELECT = "select",
-  SKELETON = "skeleton",
-}
+import { createUser } from "@/lib/actions/patient.actions";
 
 const PatientForm = () => {
   const router = useRouter();
@@ -41,19 +32,15 @@ const PatientForm = () => {
     setIsLoading(true);
 
     try {
-    //   const userData = {
-    //     name,
-    //     email,
-    //     phone,
-    //   };
+      const user = { name, email, phone };
 
-    //   const user = await createUser(userData);
+      const newUser = await createUser(user);
 
-    //   if (user) {
-    //     router.push(`/patients/${user.$id}/register`);
-    //   }
+      if (newUser) {
+        router.push(`/patients/${newUser.$id}/register`);
+      }
     } catch (error) {
-      console.log(error);
+      console.log("Error during user creation:", error);
     }
 
     setIsLoading(false);
@@ -80,7 +67,7 @@ const PatientForm = () => {
         <CustomFormField
           fieldType={FormFieldType.INPUT}
           control={form.control}
-          name="e-mail"
+          name="email"
           label="Email"
           placeholder="johndoe@gmail.com"
           iconSrc="/assets/icons/email.svg"
