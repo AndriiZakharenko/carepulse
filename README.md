@@ -10,10 +10,10 @@
 - CSS (TailWind)
 - JS
 - Adaptive
-- React
+- React (19)
 - ReactDom
 - React Hook Form
-- Next
+- Next (15)
 - Typescript
 - DB (appwrite)
 - Shadcn/ui

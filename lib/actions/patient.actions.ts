@@ -108,8 +108,6 @@ export const registerPatient = async ({
 };
 
 
-
-
 // GET PATIENT
 export const getPatient = async (userId: string) => {
   try {
