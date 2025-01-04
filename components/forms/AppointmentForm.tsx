@@ -16,14 +16,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import "react-datepicker/dist/react-datepicker.css";
 import { Appointment } from "@/types/appwrite.types";
 import { getAppointmentSchema } from "@/lib/validation";
-import { createAppointment } from "@/lib/actions/appointment.actions";
+import { createAppointment, updateAppointment } from "@/lib/actions/appointment.actions";
 
 export const AppointmentForm = ({
   userId,
   patientId,
   type = "create",
   appointment,
-//   setOpen,
+  setOpen,
 }: {
   userId: string;
   patientId: string;
@@ -88,24 +88,25 @@ export const AppointmentForm = ({
         if (!appointment?.$id) {
             throw new Error("Appointment ID is required but was not found.");
           }
-        // const appointmentToUpdate = {
-        //   userId,
-        //   appointmentId: appointment.$id!,
-        //   appointment: {
-        //     primaryPhysician: values.primaryPhysician,
-        //     schedule: new Date(values.schedule),
-        //     status: status as Status,
-        //     cancellationReason: values.cancellationReason,
-        //   },
-        //   type,
-        // };
+        const appointmentToUpdate = {
+          userId,
+          appointmentId: appointment.$id!,
+          appointment: {
+            primaryPhysician: values.primaryPhysician,
+            schedule: new Date(values.schedule),
+            status: status as Status,
+            cancellationReason: values.cancellationReason,
+          },
+          type,
+          timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        };
 
-        // const updatedAppointment = await updateAppointment(appointmentToUpdate);
+        const updatedAppointment = await updateAppointment(appointmentToUpdate);
 
-        // if (updatedAppointment) {
-        //   setOpen && setOpen(false);
-        //   form.reset();
-        // }
+        if (updatedAppointment) {
+          setOpen && setOpen(false);
+          form.reset();
+        }
       }
     } catch (error) {
       console.log(error);
