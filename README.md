@@ -17,6 +17,7 @@
 - Typescript
 - DB (appwrite)
 - Shadcn/ui
+- Sentry
 
 ### Tools
 
