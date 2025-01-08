@@ -18,6 +18,7 @@
 - DB (appwrite)
 - Shadcn/ui
 - Sentry
+- Twilio (SMS notification)
 
 ### Tools
 
