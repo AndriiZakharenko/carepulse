@@ -43,6 +43,7 @@ const Home = () => {
         width={1000}
         alt="patient"
         className="side-img max-w-[50%]"
+        priority
       />
     </div>
   );

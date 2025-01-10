@@ -4,7 +4,8 @@ import { getPatient } from "@/lib/actions/patient.actions";
 import AppointmentForm from "@/components/forms/AppointmentForm";
 
 const Appointment = async ({ params }: { params: { userId: string } }) => {
-  const { userId } = params;
+
+  const { userId } = await params;
 
   const patient = await getPatient(userId);
 
