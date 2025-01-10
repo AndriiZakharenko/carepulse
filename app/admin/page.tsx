@@ -18,6 +18,8 @@ const Admin = async () => {
             width={162}
             alt="logo"
             className="h-8 w-fit"
+            priority
+            style={{ width: '162px', height: '32px' }}
           />
         </Link>
 

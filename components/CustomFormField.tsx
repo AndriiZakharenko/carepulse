@@ -15,6 +15,7 @@ import DatePicker from "react-datepicker";
 import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
 import { Textarea } from "./ui/textarea";
 import { Checkbox } from "./ui/checkbox";
+import "react-datepicker/dist/react-datepicker.css";
 
 export enum FormFieldType {
   INPUT = "input",
@@ -55,7 +56,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
   switch (fieldType) {
     case FormFieldType.INPUT:
       return (
-        <div className="flex rounded-md border border-dark-500 bg-dark-400">
+        <div className="flex rounded-md border border-dark-500 bg-dark-400 items-center">
           {props.iconSrc && (
             <Image
               src={iconSrc || ""}
@@ -63,6 +64,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
               width={24}
               alt={props.iconAlt || "icon"}
               className="ml-2"
+              style={{ width: '24px', height: '24px' }}
             />
           )}
           <FormControl>
@@ -121,13 +123,14 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
 
     case FormFieldType.DATE_PICKER:
       return (
-        <div className="flex rounded-md border border-dark-500 bg-dark-400">
+        <div className="flex rounded-md border border-dark-500 bg-dark-400 items-center">
           <Image
             src="/assets/icons/calendar.svg"
             height={24}
             width={24}
             alt="user"
             className="ml-2"
+            style={{ width: '24px', height: '24px' }}
           />
           <FormControl>
             <DatePicker

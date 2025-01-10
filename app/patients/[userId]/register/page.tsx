@@ -3,8 +3,8 @@ import { getPatient, getUser } from "@/lib/actions/patient.actions";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
-const Register = async (props: { params: { userId: string } }) => {
-  const { userId } = props.params;
+const Register = async ({ params }: { params: { userId: string } }) => {
+  const { userId } = await params;
 
   const user = await getUser(userId);
 

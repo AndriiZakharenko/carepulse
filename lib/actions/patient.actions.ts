@@ -117,11 +117,17 @@ export const getPatient = async (userId: string) => {
       [Query.equal("userId", [userId])]
     );
 
+    if (!patients.documents || patients.documents.length === 0) {
+      return null;
+    }
+
     return parseStringify(patients.documents[0]);
   } catch (error) {
     console.error(
       "An error occurred while retrieving the patient details:",
       error
     );
+    throw error;
   }
 };
+

@@ -7,9 +7,17 @@ import Link from "next/link";
 
 const RequestSuccess = async ({
   searchParams,
-  params: { userId },
-}: SearchParamProps) => {
-  const appointmentId = (searchParams?.appointmentId as string) || "";
+  params,
+}: {
+  searchParams: Promise<Record<string, string>>;
+  params: Promise<{ userId: string }>;
+}) => {
+  const resolvedSearchParams = await searchParams;
+  const resolvedParams = await params;
+
+  const { appointmentId = "" } = resolvedSearchParams;
+  const { userId } = resolvedParams;
+
   const appointment = await getAppointment(appointmentId);
 
   if (!appointment) {
@@ -30,7 +38,7 @@ const RequestSuccess = async ({
   );
 
   return (
-    <div className=" flex h-screen max-h-screen px-[5%]">
+    <div className="flex h-screen max-h-screen px-[5%]">
       <div className="success-img">
         <Link href="/">
           <Image
@@ -50,6 +58,7 @@ const RequestSuccess = async ({
             width={280}
             alt="success"
             priority
+            style={{ width: "auto", height: "auto" }}
           />
           <h2 className="header mb-6 max-w-[600px] text-center">
             Your <span className="text-green-500">appointment request</span> has
@@ -79,7 +88,7 @@ const RequestSuccess = async ({
               width={24}
               alt="calendar"
             />
-            <p> {formatDateTime(appointment.schedule).dateTime}</p>
+            <p>{formatDateTime(appointment.schedule).dateTime}</p>
           </div>
         </section>
         <Button variant="outline" className="shad-primary-btn" asChild>
