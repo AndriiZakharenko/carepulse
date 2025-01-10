@@ -26,7 +26,7 @@
 - Turbopack
 
 ### Demo Links
-- [Demo](https://AndriiZakharenko.github.io/carepulse/)
+- [Demo](https://andrii-carepulse.vercel.app/)
 - [Original](https://resource.jsmastery.pro/healthcare-design)
 
 ### Inspired by 
