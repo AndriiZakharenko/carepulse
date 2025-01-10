@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState, Suspense } from "react";
 import PatientForm from "@/components/forms/PatientForm";
 import PasskeyModal from "@/components/PasskeyModal";
 import Image from "next/image";
@@ -7,8 +8,21 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 const Home = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <MainContent />
+    </Suspense>
+  );
+};
+
+const MainContent = () => {
   const searchParams = useSearchParams();
-  const isAdmin = searchParams.get("admin") === "true";
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const adminParam = searchParams.get("admin");
+    setIsAdmin(adminParam === "true");
+  }, [searchParams]);
 
   return (
     <div className="flex h-screen max-h-screen">
