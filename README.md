@@ -14,6 +14,7 @@
 - ReactDom
 - React Hook Form
 - Next (15)
+- Vercel
 - Typescript
 - DB (appwrite)
 - Shadcn/ui
